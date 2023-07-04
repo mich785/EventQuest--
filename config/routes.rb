@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :reviews, only:[:index, :create, :destroy, :update]
-  resources :events
+  resources :events, only:[:index]
   resources :users, only:[:index,:show, :create]
 
   post '/signup', to: 'users#create'
