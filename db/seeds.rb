@@ -1,7 +1,14 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
-#   Character.create(name: "Luke", movie: movies.first)
+# db/seeds.rb
+
+# Create an array of user attributes
+user_attributes = [
+  { username: 'user1', email: 'user1@example.com',  password_digest: ' password_digest1' },
+  { username: 'user2', email: 'user2@example.com',  password_digest: ' password_digest2' },
+  { username: 'user3', email: 'user3@example.com',  password_digest: ' password_digest3' },
+  # Add more users as needed
+]
+
+# Iterate over the user attributes and create users
+user_attributes.each do |attributes|
+  User.create(attributes)
+end

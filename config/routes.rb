@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :users
+  resources :users, only:[:index, :show]
   # route to test your configuration
   get '/hello', to: 'application#hello_world'
 
