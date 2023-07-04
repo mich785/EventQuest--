@@ -10,17 +10,23 @@ class ReviewsController < ApplicationController
 
     def create
         if session[:user_id].present?
-          review = review.new(review_params)
-          review.user_id = session[:user_id]
+          review = Review.create(review_params)
+           review.user_id = session[:user_id]
       
-          if review.save
-            render json: review, include: { user: { only: [:username, :image_url, :bio] } }, status: :created
+          if review
+            render json: review, include: :event, status: :created
           else
             render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
         else
           render json: { errors: "Unauthorized"}, status: :unauthorized
         end
+      end
+
+      private
+
+      def review_params
+      params.permit(:comment, :user_id, :event_id)
       end
       
 end
