@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
-  resources :reviews
+  resources :reviews only:[:index, :create, :destroy, :update]
   resources :events
-  resources :users, only:[:index, :show]
+  resources :users, only:[:index, :create]
+  post '/signup', to: 'users#create'
+  get '/me', to: 'users#show'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   # route to test your configuration
   get '/hello', to: 'application#hello_world'
 
