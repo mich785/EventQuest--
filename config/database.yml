@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: eventquest_production
-  username: eventquest
-  password: <%= ENV["EVENTQUEST_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
