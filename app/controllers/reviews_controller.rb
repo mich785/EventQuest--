@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
     def index
         reviews = Review.all 
-        # if session[:user_id].present?
-            render json: reviews ,status: :ok
-        # else
-        #     render json: { errors: "Unauthorized"}, status: :unauthorized
-        # end
+        if session[:user_id].present?
+            render json: reviews,status: :ok
+        else
+            render json: { errors: "Unauthorized"}, status: :unauthorized
+        end
     end
 
     def create
@@ -24,7 +24,7 @@ class ReviewsController < ApplicationController
       end
 
       def update
-        review = Review.find(params[:id])
+        review = find_review
         
         if session[:user_id].present? && review.user_id == session[:user_id]
           if review.update(review_params)
@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
       
 
     def destroy
-     review = Review.find(params[:id])
+     review =find_review
   
       if session[:user_id].present? && review.user_id == session[:user_id]
         review.destroy
@@ -55,5 +55,8 @@ class ReviewsController < ApplicationController
       def review_params
       params.permit(:comment, :user_id, :event_id)
       end
-      
+
+      def find_review
+        Review.find(params[:id])
+      end
 end
