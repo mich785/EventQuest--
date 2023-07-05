@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
     def index
         reviews = Review.all 
-        if session[:user_id].present?
+        # if session[:user_id].present?
             render json: reviews ,status: :ok
-        else
-            render json: { errors: "Unauthorized"}, status: :unauthorized
-        end
+        # else
+        #     render json: { errors: "Unauthorized"}, status: :unauthorized
+        # end
     end
 
     def create
@@ -26,20 +26,7 @@ class ReviewsController < ApplicationController
       def update
         review = Review.find(params[:id])
         
-        if session[:user_id].present? def update
-            review = Review.find(params[:id])
-            
-            if session[:user_id].present? && review.user_id == session[:user_id]
-              if review.update(review_params)
-                render json: review, include: :event, status: :ok
-              else
-                render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-              end
-            else
-              render json: { errors: "Unauthorized" }, status: :unauthorized
-            end
-          end
-          
+        if session[:user_id].present? && review.user_id == session[:user_id]
           if review.update(review_params)
             render json: review, include: :event, status: :ok
           else
@@ -49,27 +36,19 @@ class ReviewsController < ApplicationController
           render json: { errors: "Unauthorized" }, status: :unauthorized
         end
       end
+      
 
-      def destroy
-        review = Review.find(params[:id])
-        
-        if session[:user_id].present? def destroy
-            review = Review.find(params[:id])
-            
-            if session[:user_id].present? && review.user_id == session[:user_id]
-              review.destroy
-              render json: { message: "Review deleted successfully" }, status: :ok
-            else
-              render json: { errors: "Unauthorized" }, status: :unauthorized
-            end
-          end
-          
-          review.destroy
-          render json: { message: "Review deleted successfully" }, status: :ok
-        else
-          render json: { errors: "Unauthorized" }, status: :unauthorized
-        end
+    def destroy
+     review = Review.find(params[:id])
+  
+      if session[:user_id].present? && review.user_id == session[:user_id]
+        review.destroy
+        render json: { message: "Review deleted successfully" }, status: :ok
+      else
+       render json: { errors: "Unauthorized" }, status: :unauthorized
       end
+    end
+
        
       private
 
