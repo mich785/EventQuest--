@@ -8,6 +8,7 @@ function Reviews() {
     fetch("/reviews")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
         setReviews(data);
       })
       .catch((error) => {
@@ -86,6 +87,7 @@ function Reviews() {
           {reviews.map((review) => (
             <li key={review.id}>
               <p>{review.comment}</p>
+              <h4>{review.event.name}</h4>
               <button onClick={() => handleDelete(review.id)}>Delete</button>
             </li>
           ))}

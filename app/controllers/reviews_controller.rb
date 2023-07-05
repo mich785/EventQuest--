@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
     def index
         reviews = Review.all 
-        if session[:user_id].present?
+        # if session[:user_id].present?
             render json: reviews,status: :ok
-        else
-            render json: { errors: "Unauthorized"}, status: :unauthorized
-        end
+        # else
+        #     render json: { errors: "Unauthorized"}, status: :unauthorized
+        # end
     end
 
     def create
