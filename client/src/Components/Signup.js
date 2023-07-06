@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 function SignUp({ onLogin }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -47,3 +49,5 @@ function SignUp({ onLogin }) {
       </form>
     );
   }
+
+  export default SignUp
