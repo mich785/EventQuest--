@@ -3,16 +3,18 @@ import React, { useState, useEffect } from "react";
 function Reviews() {
   const [reviews, setReviews] = useState([]);
   const [comment, setComment] = useState("");
+  const [isLoading, setIsLoading] = useState(true); // Loader state
 
   useEffect(() => {
     fetch("/reviews")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setReviews(data);
+        setIsLoading(false); // Turn off loader when data is fetched
       })
       .catch((error) => {
         console.log("Error retrieving reviews", error);
+        setIsLoading(false); // Turn off loader in case of error
       });
   }, []);
 
@@ -81,18 +83,22 @@ function Reviews() {
           </button>
         </form>
       </div>
-      <div className="review-list">
-        <h2>Reviews</h2>
-        <ul>
-          {reviews.map((review) => (
-            <li key={review.id}>
-              <p>{review.comment}</p>
-              <h4>{review.event.name}</h4>
-              <button onClick={() => handleDelete(review.id)}>Delete</button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {isLoading ? ( // Conditional rendering based on loader state
+        <div>Loading...</div> // Display the loader while fetching data
+      ) : (
+        <div className="review-list">
+          <h2>Reviews</h2>
+          <ul>
+            {reviews.map((review) => (
+              <li key={review.id}>
+                <p>{review.comment}</p>
+                <h4>{review.event.name}</h4>
+                <button onClick={() => handleDelete(review.id)}>&#x1F5D1;</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
