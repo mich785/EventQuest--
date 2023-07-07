@@ -1,18 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
 import LoginPage from "./LoginPage";
 import "../Styles/home.css";
+import SignUp from "./SignUp";
 
   function Home() {
+    const [currentForm,setCurrentForm]= useState ('login');
+
+    const toggleForm = (formName)=>(
+      setCurrentForm(formName)
+    )
+
     return (
       <div className="home-container">
         <h1>Welcome to EventQuest</h1>
-        <LoginPage />
-        <div className="alternative">
-          <p>
-            Don't have an account? <Link to="/signup">Sign Up</Link>
-          </p>
-        </div>
+        {
+          currentForm === 'login'? <LoginPage onFormSwitch={toggleForm} /> :<SignUp onFormSwitch={toggleForm}/>
+        }
       </div>
     );
   }

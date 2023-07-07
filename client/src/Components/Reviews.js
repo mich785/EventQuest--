@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../Styles/review.css";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
@@ -78,13 +79,13 @@ function Reviews() {
             onChange={(e) => setComment(e.target.value)}
           />
           <br />
-          <button type="submit" className="submit">
+          <button type="submit" >
             Submit
           </button>
         </form>
       </div>
       {isLoading ? ( // Conditional rendering based on loader state
-        <div>Loading...</div> // Display the loader while fetching data
+        <div className="loader">Loading...</div> // Display the loader while fetching data
       ) : (
         <div className="review-list">
           <h2>Reviews</h2>

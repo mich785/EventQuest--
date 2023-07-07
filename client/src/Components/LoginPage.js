@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Styles/login.css";
 
-function LoginPage() {
+function LoginPage({onFormSwitch}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -57,6 +57,7 @@ function LoginPage() {
           <button type="submit">Login</button>
         </div>
       </form>
+      <button onClick={()=>onFormSwitch('signup')}>Don't have an account?Signup</button>
     </div>
   );
 }
