@@ -14,7 +14,7 @@ function LoginPage({onFormSwitch}) {
         const users = data.users;
         const existingUser = users.find((user) => user.email === email);
         if (existingUser) {
-          console.log("Login successful");
+          console.log("Login successful")
         } else {
           console.log("Invalid login email");
         }

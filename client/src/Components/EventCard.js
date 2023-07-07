@@ -1,12 +1,12 @@
 import React from "react";
+import "../Styles/eventcard.css";
 
-function EventCard({ name, description, category, country }) {
+function EventCard({ name,  category, country }) {
   return (
-    <div>
-      <h4>{name}</h4>
-      <p>{description}</p>
-      <h6>Category: {category}</h6>
-      <h6>Country: {country}</h6>
+    <div className = "card">
+      <h4 className="heading">{name}</h4>
+      <h5>Category: {category}</h5>
+      <h5>Country: {country}</h5>
     </div>
   );
 }
