@@ -5,7 +5,7 @@ import LoginPage from "./LoginPage";
 function Home() {
   return (
     <>
-      <h1>Hi</h1>
+      <h1>Welcome to EventQuest</h1>
       <LoginPage/>
       <div className="alternative">
         <p>

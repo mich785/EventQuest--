@@ -1,7 +1,7 @@
 puts "Destroying existing data"
 Review.destroy_all
 User.destroy_all
- Event.destroy_all
+ 
 
 # Reset the sequence for the "reviews" table
 ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('reviews', 'id'), COALESCE(MAX(id), 1), false) FROM reviews")
@@ -10,14 +10,14 @@ ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('rev
 ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('users', 'id'), COALESCE(MAX(id), 1), false) FROM users")
 
 # Reset the sequence for the "events" table
-ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('events', 'id'), COALESCE(MAX(id), 1), false) FROM events")
+# ActiveRecord::Base.connection.execute("SELECT setval(pg_get_serial_sequence('events', 'id'), COALESCE(MAX(id), 1), false) FROM events")
 
 puts "Seeding data..."
 
 require 'net/http'
 require 'json'
 
-url = URI.parse("https://api.predicthq.com/v1/events/?country=KE%2CTZ%2CUG")
+url = URI.parse("https://api.predicthq.com/v1/events/?category=concerts&country=KE")
 authorization_token = 'huaBV1i2PDR4BEQy2k6a1Ed501uwAabqWISCswkW'
 
 
@@ -32,17 +32,20 @@ response = http.request(request)
 if response.code == "200"
   data = JSON.parse(response.body)
   
-  if data["count"] > 0 && data["count"] > 80
+  if data["count"] > 0 
     event_data = data["results"]
     event_data.each do |event|
-      Event.create(
-        name: event["title"],
-        country: event["country"],
-        description: event["description"],
-        category: event["category"]
-      )
+      # entities = event["entities"]
+      # if entities && entities.length > 0
+      #   description = entities[0]["formatted_address"]
+        Event.create(
+          name: event["title"],
+          country: event["country"],
+          description:event ["description"],
+          category: event["category"]
+        )
+      # end
     end
-  
   
   else
     puts "No events found in the API response"
