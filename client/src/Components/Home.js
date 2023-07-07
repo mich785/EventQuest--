@@ -1,12 +1,12 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import LoginPage from "./LoginPage";
-import { BrowserRouter as  Link } from "react-router-dom";
 
 function Home() {
   return (
     <>
       <h1>Hi</h1>
-      <LoginPage />
+      <LoginPage/>
       <div className="alternative">
         <p>
           Don't have an account? <Link to="/signup">Sign Up</Link>

@@ -23,7 +23,7 @@ function SignUp({ onLogin }) {
     }
   
     return (
-      <form onSubmit={handleSubmit}>
+        <><form onSubmit={handleSubmit}>
         <label htmlFor="username">Username:</label>
         <input
           type="text"
@@ -47,6 +47,8 @@ function SignUp({ onLogin }) {
         />
         <button type="submit">Submit</button>
       </form>
+      </>
+     
     );
   }
 
