@@ -1,11 +1,11 @@
 class ReviewsController < ApplicationController
     def index
         reviews = Review.all 
-        # if session[:user_id].present?
+        if session[:user_id].present?
             render json: reviews,status: :ok
-        # else
-        #     render json: { errors: "Unauthorized"}, status: :unauthorized
-        # end
+        else
+            render json: { errors: "Unauthorized"}, status: :unauthorized
+        end
     end
 
     def eventReviews
@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
     end
 
     def create
-        # if session[:user_id].present?
+        if session[:user_id].present?
           review = Review.create(review_params)
            review.user_id = session[:user_id]
       
@@ -24,25 +24,10 @@ class ReviewsController < ApplicationController
           else
             render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
           end
-        # else
-        #   render json: { errors: "Unauthorized"}, status: :unauthorized
-        # end
+        else
+          render json: { errors: "Unauthorized"}, status: :unauthorized
+        end
       end
-
-      # def update
-      #   review = find_review
-        
-      #   if session[:user_id].present? && review.user_id == session[:user_id]
-      #     if review.update(review_params)
-      #       render json: review, include: :event, status: :ok
-      #     else
-      #       render json: { errors: review.errors.full_messages }, status: :unprocessable_entity
-      #     end
-      #   else
-      #     render json: { errors: "Unauthorized" }, status: :unauthorized
-      #   end
-      # end
-      
 
     def destroy
      review =find_review
