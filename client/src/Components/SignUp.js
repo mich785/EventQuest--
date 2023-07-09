@@ -22,7 +22,19 @@ function SignUp({ onLogin, onFormSwitch }) {
       }),
     })
       .then((r) => r.json())
-      .then(onLogin);
+      .then((data) => {
+        // Check if the response indicates a successful signup
+        if (data.success) {
+          // Perform the login action
+          onLogin();
+        } else {
+          // Handle unsuccessful signup (e.g., display an error message)
+          console.log("Signup failed:", data.errors);
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   }
 
   return (
@@ -58,7 +70,7 @@ function SignUp({ onLogin, onFormSwitch }) {
         />
         <button className="signup" type="submit">Submit</button>
       </form>
-      <button  onClick={() => onFormSwitch("login")} className="switch-button">
+      <button onClick={() => onFormSwitch("login")} className="switch-button">
         Already have an account? Log in
       </button>
     </>

@@ -11,10 +11,21 @@ function LoginPage({onFormSwitch}) {
     fetch("/users")
       .then((response) => response.json())
       .then((data) => {
+        console.log(data)
         const users = data.users;
+        
         const existingUser = users.find((user) => user.email === email);
         if (existingUser) {
           console.log("Login successful")
+          return fetch("/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ username }),
+          })
+            .then((r) => r.json())
+            .then((user) => onLogin(user));
         } else {
           console.log("Invalid login email");
         }
