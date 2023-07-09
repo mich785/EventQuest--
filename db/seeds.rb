@@ -1,6 +1,7 @@
 puts "Destroying existing data"
 Review.destroy_all
 User.destroy_all
+# Event.destroy_all
 
 
 # Reset the sequence for the "reviews" table
@@ -17,7 +18,7 @@ puts "Seeding data..."
 require 'net/http'
 require 'json'
 
-url = URI.parse("https://api.predicthq.com/v1/events/?category=sports&country=UG&updated.undefined=2023-07-09")
+url = URI.parse("https://api.predicthq.com/v1/events/?category=sports&country=TZ&updated.undefined=2023-07-09")
 authorization_token = 'huaBV1i2PDR4BEQy2k6a1Ed501uwAabqWISCswkW'
 
 
@@ -37,16 +38,18 @@ if response.code == "200"
     event_data.each do |event|
       entities = event["entities"]
       if entities && entities.length > 0
-        place = entities[0]["formatted_address"]
+        formatted_address = entities[0]["formatted_address"]
         Event.create(
           name: event["title"],
           country: event["country"],
           description: event["start"],
           category: event["category"],
-          place: place
+          place: formatted_address
         )
       end
     end
+  
+  
   
   else
     puts "No events found in the API response"
