@@ -10,7 +10,7 @@ import { IsUserLoggedIn } from "./Utils";
 function App() {
   return (
     <BrowserRouter>
-      <Navbar isLoggedin={isLoggedin} />
+      <Navbar />
       <div className="AppContent">
         <Switch>
         <Route exact path="/" component={Home} />

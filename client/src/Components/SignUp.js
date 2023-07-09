@@ -28,13 +28,16 @@ function SignUp({ onLogin, onFormSwitch }) {
           // Perform the login action
           onLogin();
         } else {
-          // Handle unsuccessful signup (e.g., display an error message)
           console.log("Signup failed:", data.errors);
         }
       })
       .catch((error) => {
         console.log("Error:", error);
       });
+      setUsername('')
+      setEmail('')
+      setPassword('')
+      setPasswordConfirmation('')
   }
 
   return (
