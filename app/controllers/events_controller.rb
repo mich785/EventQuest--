@@ -1,11 +1,11 @@
 class EventsController < ApplicationController
     def index
         events = Event.all 
-        # if session[:user_id].present?
+        if session[:user_id].present?
             render json: events ,status: :ok
-        # else
-        #     render json: { errors: "Unauthorized"}, status: :unauthorized
-        # end
+        else
+            render json: { errors: "Unauthorized"}, status: :unauthorized
+        end
     end
     def show
         event = Event.find_by(id:params[:id])
@@ -15,15 +15,4 @@ class EventsController < ApplicationController
           render json: { error: "Not Found" }, status: :not_found
         end
     end
-#Delete unwanted data from db
-    # def destroy
-    #     event= Event.find_by(id:params[:id])
-    #     if event
-    #         event.reviews.destroy_all
-    #         event.delete
-    #         head :no_content
-    #     else
-    #         render json:{error:"Event not found"}
-    #     end
-    # end
 end
