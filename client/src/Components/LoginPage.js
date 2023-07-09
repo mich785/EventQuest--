@@ -1,38 +1,22 @@
 import React, { useState } from "react";
 import "../Styles/login.css";
 
-function LoginPage({onFormSwitch}) {
+function LoginPage({onFormSwitch, onLogin}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
-    // Validate the login email
-    fetch("/users")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data)
-        const users = data.users;
-        
-        const existingUser = users.find((user) => user.email === email);
-        if (existingUser) {
-          console.log("Login successful")
-          return fetch("/login", {
+   fetch("/login", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ email ,password }),
           })
             .then((r) => r.json())
             .then((user) => onLogin(user));
-        } else {
-          console.log("Invalid login email");
-        }
-      })
-      .catch((error) => {
-        console.log("Error retrieving user data", error);
-      });
+        
     setEmail("");
     setPassword("");
   }

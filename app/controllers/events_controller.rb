@@ -7,6 +7,14 @@ class EventsController < ApplicationController
         #     render json: { errors: "Unauthorized"}, status: :unauthorized
         # end
     end
+    def show
+        event = Event.find_by(id:params[:id])
+        if event
+          render json: event
+        else
+          render json: { error: "Not Found" }, status: :not_found
+        end
+    end
 #Delete unwanted data from db
     # def destroy
     #     event= Event.find_by(id:params[:id])

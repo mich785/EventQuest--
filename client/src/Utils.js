@@ -1,0 +1,1 @@
+export const IsUserLoggedIn = sessionStorage.getItem("isLoggedin") ==="true"

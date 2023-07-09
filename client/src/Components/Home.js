@@ -11,6 +11,12 @@ import SignUp from "./SignUp";
       setCurrentForm(formName)
     )
 
+    const setUserOnlogin = (user)=>{
+      setUser(user);
+      sessionStorage.setItem("isLoggedin", "true");
+
+    }
+
   useEffect(() => {
     fetch("/me").then((response) => {
       if (response.ok) {
@@ -31,7 +37,7 @@ import SignUp from "./SignUp";
            <div className="home-container">
             <h1> Welcome to EventQuest</h1>
         {
-          currentForm === 'login'? <LoginPage onLogin={setUser} onFormSwitch={toggleForm} /> :<SignUp onLogin={setUser} onFormSwitch={toggleForm}/>
+          currentForm === 'login'? <LoginPage onLogin={setUserOnlogin} onFormSwitch={toggleForm} /> :<SignUp onLogin={setUser} onFormSwitch={toggleForm}/>
         }
         </div>
         </>

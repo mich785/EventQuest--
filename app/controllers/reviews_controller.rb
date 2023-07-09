@@ -8,6 +8,12 @@ class ReviewsController < ApplicationController
         # end
     end
 
+    def eventReviews
+      reviews = Review.where(event_id:params[:event_id])
+
+      render json: reviews,status: :ok
+    end
+
     def create
         # if session[:user_id].present?
           review = Review.create(review_params)
@@ -59,4 +65,6 @@ class ReviewsController < ApplicationController
       def find_review
         Review.find(params[:id])
       end
+
+     
 end

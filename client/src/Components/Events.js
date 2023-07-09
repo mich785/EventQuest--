@@ -13,7 +13,6 @@ function Events() {
       .then((response) => response.json())
       .then((data) => {
         setEvents(data);
-        console.log(data);
       });
   }, []);
 
@@ -21,13 +20,15 @@ function Events() {
     return <div>Loading...</div>;
   }
 
-  function handleReviews(id){
-    console.log(id)
-    history.push("/reviews")
+  function handleReviews(event){
+    history.push({
+      pathname:"/reviews",
+      state:{eventForReview: event}})
 }
 
   return (
     <>
+     <div className="row">
       <form>
         <input
             type="text"
@@ -36,6 +37,7 @@ function Events() {
             onChange={(e) => setSearch(e.target.value)}
         /> 
       </form>
+      </div>
       <div className="row">
         {events.filter((event)=>{
           return search.toLowerCase() === "" ? event :
@@ -44,12 +46,13 @@ function Events() {
           <EventCard
           handleReviews={handleReviews}
             key={event.id}
-            id={event.id}
-            name={event.name}
-            description={event.description}
-            category={event.category}
-            country={event.country}
-            place={event.place}
+          event = {event}
+            // id={event.id}
+            // name={event.name}
+            // description={event.description}
+            // category={event.category}
+            // country={event.country}
+            // place={event.place}
           />
         ))}
       </div>

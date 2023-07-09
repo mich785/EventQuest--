@@ -1,24 +1,80 @@
 import React, { useState, useEffect } from "react";
+import { useLocation} from 'react-router-dom'
 import "../Styles/review.css";
 
 function Reviews() {
   const [reviews, setReviews] = useState([]);
+  const [eventForReview, setEventForReview] = useState(null);
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(true); // Loader state
+  const [isForEventReview, SetIsForEventReview] = useState(false); // Loader state
+  const location = useLocation()
 
-  useEffect(() => {
-    fetch("/reviews")
-      .then((response) => response.json())
-      .then((data) => {
+ 
+
+  // useEffect(() => {
+  //   let reviewsUrl="/reviews"  ;
+  //   if(isForEventReview){
+  //       reviewsUrl =   "/eventReviews?" + new URLSearchParams({
+  //       event_id: eventForReview?.id});
+  //   }
+   
+  //   console.log(reviewsUrl);
+
+  //   fetch(reviewsUrl)
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       if(data){
+  //         setReviews(data);
+  //       }else{
+  //         setReviews([]);
+  //       }
+  //       SetIsForEventReview(false);
+  //       setIsLoading(false); // Turn off loader when data is fetched
+  //     })
+  //     .catch((error) => {
+  //       console.log("Error retrieving reviews", error);
+  //       setIsLoading(false); // Turn off loader in case of error
+  //     });
+  // }, [eventForReview]);
+
+  useEffect(()=>{
+    let reviewsUrl="/reviews"  ;
+    if(isForEventReview){
+       
+    }
+   
+    if(location && location.state){
+      const _eventForReview= location.state.eventForReview
+      SetIsForEventReview(true);// Show review form for this particular Event
+      if(_eventForReview){
+        setEventForReview(_eventForReview);
+        reviewsUrl =   "/eventReviews?" + new URLSearchParams({
+          event_id: _eventForReview?.id});
+      }
+    }
+
+    fetch(reviewsUrl)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      if(data){
         setReviews(data);
-        setIsLoading(false); // Turn off loader when data is fetched
-      })
-      .catch((error) => {
-        console.log("Error retrieving reviews", error);
-        setIsLoading(false); // Turn off loader in case of error
-      });
-  }, []);
+      }else{
+        setReviews([]);
+      }
+      SetIsForEventReview(false);
+      setIsLoading(false); // Turn off loader when data is fetched
+    })
+    .catch((error) => {
+      console.log("Error retrieving reviews", error);
+      setIsLoading(false); // Turn off loader in case of error
+    });
 
+  },[location]);
+
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment !== "") {
