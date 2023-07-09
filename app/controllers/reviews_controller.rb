@@ -8,7 +8,7 @@ class ReviewsController < ApplicationController
         end
     end
 
-    def eventReviews
+    def event_reviews
       reviews = Review.where(event_id:params[:event_id])
 
       render json: reviews,status: :ok

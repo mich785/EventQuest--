@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :events, only:[:index,:show]
   resources :users, only:[:index,:show, :create, :destroy]
 
-  get '/eventReviews', to: 'reviews#eventReviews'
+  get '/event_reviews', to: 'reviews#event_reviews'
   post '/signup', to: 'users#create'
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
