@@ -36,12 +36,14 @@ function Reviews() {
             throw new Error("Error submitting review to the API");
           }
         })
-        .then(() => {
-          setComment("");
+        .then((reviewsResponse) => reviewsResponse.json())
+        .then((reviewsData) => {
+          setReviews((reviewsData));
         })
         .catch((error) => {
           console.error("Error submitting review to the API", error);
         });
+        setComment('')
     } else {
       alert("Please provide a comment to submit the review.");
     }
@@ -85,10 +87,12 @@ function Reviews() {
         </form>
       </div>
       {isLoading ? ( // Conditional rendering based on loader state
-        <div className="loader">Loading...</div> // Display the loader while fetching data
+        <div class="spinner">
+        <div class="spinner1"></div>
+    </div>// Display the loader while fetching data
       ) : (
         <div className="review-list">
-          <h2>Reviews</h2>
+          <h2>Past Reviews</h2>
           <ul>
             {reviews.map((review) => (
               <li key={review.id}>

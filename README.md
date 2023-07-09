@@ -29,3 +29,7 @@ access token: huaBV1i2PDR4BEQy2k6a1Ed501uwAabqWISCswkW
 curl "https://api.predicthq.com/v1/events/?category=concerts&country=KE" \
 -H "Accept: application/json" \
 -H "Authorization: Bearer $ACCESS_TOKEN"
+
+curl "https://api.predicthq.com/v1/events/?category=sports&country=KE&updated.undefined=2023-07-09" \
+        -H "Accept: application/json" \
+        -H "Authorization: Bearer $ACCESS_TOKEN"

@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2023_07_05_153804) do
     t.string "country"
     t.text "description"
     t.string "category"
+    t.string "place"
   end
 
   create_table "reviews", force: :cascade do |t|

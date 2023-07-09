@@ -56,9 +56,9 @@ function SignUp({ onLogin, onFormSwitch }) {
           value={passwordConfirmation}
           onChange={(e) => setPasswordConfirmation(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button className="signup" type="submit">Submit</button>
       </form>
-      <button onClick={() => onFormSwitch("login")} className="switch-button">
+      <button  onClick={() => onFormSwitch("login")} className="switch-button">
         Already have an account? Log in
       </button>
     </>

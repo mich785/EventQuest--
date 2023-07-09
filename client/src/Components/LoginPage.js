@@ -54,10 +54,10 @@ function LoginPage({onFormSwitch}) {
           </label>
         </div>
         <div className="submit-container">
-          <button type="submit">Login</button>
+          <button className = "login" type="submit">Login</button>
         </div>
       </form>
-      <button onClick={()=>onFormSwitch('signup')}>Don't have an account?Signup</button>
+      <button className= "switch" onClick={()=>onFormSwitch('signup')}>Don't have an account?Signup</button>
     </div>
   );
 }
