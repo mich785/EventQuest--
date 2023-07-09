@@ -7,37 +7,8 @@ function Reviews() {
   const [eventForReview, setEventForReview] = useState(null);
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(true); // Loader state
-  const [isForEventReview, SetIsForEventReview] = useState(false); // Loader state
+  const [isForEventReview, setIsForEventReview] = useState(false); // Loader state
   const location = useLocation()
-
- 
-
-  // useEffect(() => {
-  //   let reviewsUrl="/reviews"  ;
-  //   if(isForEventReview){
-  //       reviewsUrl =   "/eventReviews?" + new URLSearchParams({
-  //       event_id: eventForReview?.id});
-  //   }
-   
-  //   console.log(reviewsUrl);
-
-  //   fetch(reviewsUrl)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       if(data){
-  //         setReviews(data);
-  //       }else{
-  //         setReviews([]);
-  //       }
-  //       SetIsForEventReview(false);
-  //       setIsLoading(false); // Turn off loader when data is fetched
-  //     })
-  //     .catch((error) => {
-  //       console.log("Error retrieving reviews", error);
-  //       setIsLoading(false); // Turn off loader in case of error
-  //     });
-  // }, [eventForReview]);
 
   useEffect(()=>{
     let reviewsUrl="/reviews"  ;
@@ -47,10 +18,10 @@ function Reviews() {
    
     if(location && location.state){
       const _eventForReview= location.state.eventForReview
-      SetIsForEventReview(true);// Show review form for this particular Event
+      setIsForEventReview(true);// Show review form for this particular Event
       if(_eventForReview){
         setEventForReview(_eventForReview);
-        reviewsUrl =   "/eventReviews?" + new URLSearchParams({
+        reviewsUrl =   "/event_reviews?" + new URLSearchParams({
           event_id: _eventForReview?.id});
       }
     }
@@ -64,7 +35,6 @@ function Reviews() {
       }else{
         setReviews([]);
       }
-      SetIsForEventReview(false);
       setIsLoading(false); // Turn off loader when data is fetched
     })
     .catch((error) => {
