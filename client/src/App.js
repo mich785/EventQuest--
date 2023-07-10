@@ -5,7 +5,7 @@ import Home from "./Components/Home";
 import Reviews from "./Components/Reviews";
 import Events from "./Components/Events";
 import "./App.css"
-import { IsUserLoggedIn } from "./Utils";
+import LoginPage from "./Components/LoginPage";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
         <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />
           <Route path="/reviews" component={Reviews} />
+          <Route path="loginpage" component={LoginPage}/>
         </Switch>
       </div>
     </BrowserRouter>
