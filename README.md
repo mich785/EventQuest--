@@ -1,6 +1,6 @@
 # EventQuest
 
-LIVE LINK:
+LIVE LINK: https://eventquest.onrender.com
 
 ## Introduction
 The EventQuest allowers users to discover and explore different events in Kenya ,Uganda and Tanzania.The events include expos,conferences,festivals,concerts and sports.
