@@ -107,7 +107,7 @@ function Reviews() {
             onChange={(e) => setComment(e.target.value)}
           />
           <br />
-          <button type="submit" >
+          <button type="submit" className="review" >
             Submit
           </button>
         </form>

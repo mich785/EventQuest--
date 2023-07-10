@@ -88,9 +88,20 @@
     margin-bottom: 5px;
   }
   
-  .review-list button {
-    background-color: transparent;
+  .review{
+    text-decoration: none;
+    position: relative;
     border: none;
-    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    color: #fff;
+    width: 15em;
+    height: 3em;
+    line-height: 2em;
+    text-align: center;
+    background: linear-gradient(90deg,#03a9f4,#f441a5,#ffeb3b,#03a9f4);
+    background-size: 300%;
+    border-radius: 30px;
+    z-index: 1;
   }
   
