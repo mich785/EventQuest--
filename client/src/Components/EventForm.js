@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../Styles/eventform.css";
 
 function EventForm() {
   const [place, setPlace] = useState("");
@@ -29,11 +30,11 @@ function EventForm() {
           // Perform the necessary actions, such as displaying a success message
           alert("Event created successfully");
           // Reset the form fields
-        //   setPlace("");
-        //   setCountry("");
-        //   setDescription("");
-        //   setCategory("");
-        //   setName("");
+          setPlace("");
+          setCountry("");
+          setDescription("");
+          setCategory("");
+          setName("");
         } else {
           console.log("Event creation failed:", data.error);
           // Handle any errors or display appropriate messages
@@ -43,57 +44,56 @@ function EventForm() {
         console.log("Error:", error);
         // Handle any errors that occurred during the request
       });
-
-      setPlace("");
-          setCountry("");
-          setDescription("");
-          setCategory("");
-          setName("");
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Event Name:</label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+    <div className="container">
+      <form className="form" onSubmit={handleSubmit}>
+        <h1>Add Event</h1>
+        <label htmlFor="name">Event Name:</label>
+        <input
+          type="text"
+          id="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-      <label htmlFor="description">Event Date and time:</label>
-      <textarea
-        id="description"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-      ></textarea>
+        <label htmlFor="description">Event Date and Time:</label>
+        <input
+          id="description"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></input>
 
-      <label htmlFor="country">Country:</label>
-      <input
-        type="text"
-        id="country"
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-      />
+        <label htmlFor="country">Country:</label>
+        <input
+          type="text"
+          id="country"
+          value={country}
+          onChange={(e) => setCountry(e.target.value)}
+        />
 
-      <label htmlFor="category">Event Category:</label>
-      <input
-        type="text"
-        id="category"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-      />
+        <label htmlFor="category">Event Category:</label>
+        <input
+          type="text"
+          id="category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+        />
 
-      <label htmlFor="place">Event Place:</label>
-      <input
-        type="text"
-        id="place"
-        value={place}
-        onChange={(e) => setPlace(e.target.value)}
-      />
+        <label htmlFor="place">Event Place:</label>
+        <input
+          type="text"
+          id="place"
+          value={place}
+          onChange={(e) => setPlace(e.target.value)}
+        />
 
-      <button type="submit">Create Event</button>
-    </form>
+        <button type="submit" className="create">
+          Create Event
+        </button>
+      </form>
+    </div>
   );
 }
 
