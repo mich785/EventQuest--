@@ -67,7 +67,7 @@ function Reviews() {
           setReviews((reviewsData));
         })
         .catch((error) => {
-          console.error("Error submitting review to the API", error);
+          console.error("Error submitting review to the API", errors);
         });
         setComment('')
     } else {
