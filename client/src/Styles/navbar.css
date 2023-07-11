@@ -26,6 +26,12 @@
   background-color: #e8e8e8;
 }
 
+.logout{
+  display: flex;
+  justify-content: flex-end;
+  align-items:center ;
+}
+
 .logout-button{
   text-decoration: none;
   position: relative;

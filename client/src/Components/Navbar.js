@@ -51,10 +51,12 @@ const Navbar = () => {
             Add Event
           </Link>
         </li>
+        </ul>
+        <div className="logout">
         <button onClick={handleLogout} className="logout-button">
           Logout
         </button>
-      </ul>
+        </div>
     </nav>
   );
 };
