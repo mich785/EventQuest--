@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :reviews, only:[:index, :create, :destroy, :update]
-  resources :events, only:[:index,:show]
+  resources :reviews, only:[:index, :create, :destroy]
+  resources :events, only:[:index,:show, :create]
   resources :users, only:[:index,:show, :create, :destroy]
 
   get '/event_reviews', to: 'reviews#event_reviews'

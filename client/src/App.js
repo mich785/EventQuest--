@@ -4,8 +4,9 @@ import Navbar from "./Components/Navbar";
 import Home from "./Components/Home";
 import Reviews from "./Components/Reviews";
 import Events from "./Components/Events";
+import EventForm from "./Components/EventForm";
 import "./App.css"
-import LoginPage from "./Components/LoginPage";
+
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />
           <Route path="/reviews" component={Reviews} />
-          <Route path="loginpage" component={LoginPage}/>
+          <Route path="/eventform" component={EventForm}/>
         </Switch>
       </div>
     </BrowserRouter>

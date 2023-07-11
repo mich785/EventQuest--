@@ -12,7 +12,7 @@ const Navbar = () => {
       .then((response) => {
         if (response.ok) {
           // Redirect to the login page or any desired route
-          history.push("/home");
+          history.push("/");
           alert ('Log Out Successful!')
         } else {
           // Handle unsuccessful logout
@@ -44,6 +44,11 @@ const Navbar = () => {
         <li className="navbar-item">
           <Link to="/reviews" className="navbar-link">
             Reviews
+          </Link>
+        </li>
+        <li className="navbar-item">
+          <Link to="/eventform" className="navbar-link">
+            Add Event
           </Link>
         </li>
         <button onClick={handleLogout} className="logout-button">
