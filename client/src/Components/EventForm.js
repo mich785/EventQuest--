@@ -50,45 +50,56 @@ function EventForm() {
     <div className="container">
       <form className="form" onSubmit={handleSubmit}>
         <h1>Add Event</h1>
-        <label htmlFor="name">Event Name:</label>
+        <div className="input-span">
+        <label htmlFor="name" className="label">Event Name:
         <input
           type="text"
           id="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
-        <label htmlFor="description">Event Date and Time:</label>
+        </label>
+       </div>
+       <div className="input-span">
+        <label htmlFor="description" className="label">Event Date and Time:
         <input
           id="description"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         ></input>
-
-        <label htmlFor="country">Country:</label>
+        </label>
+       </div>
+       <div className="input-span">
+        <label htmlFor="country" className="label">Country:
         <input
           type="text"
           id="country"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />
-
-        <label htmlFor="category">Event Category:</label>
+        </label>
+      </div>
+      <div className="input-span">
+        <label htmlFor="category" className="label">Event Category:
         <input
           type="text"
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-
-        <label htmlFor="place">Event Place:</label>
+        </label>
+      </div>
+      <div className="input-span">
+        <label htmlFor="place" className="label">
+            Event Place:
         <input
           type="text"
           id="place"
           value={place}
           onChange={(e) => setPlace(e.target.value)}
         />
-
+        </label>
+      </div>
         <button type="submit" className="create">
           Create Event
         </button>
