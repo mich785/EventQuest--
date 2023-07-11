@@ -30,11 +30,6 @@ function EventForm() {
           // Perform the necessary actions, such as displaying a success message
           alert("Event created successfully");
           // Reset the form fields
-          setPlace("");
-          setCountry("");
-          setDescription("");
-          setCategory("");
-          setName("");
         } else {
           console.log("Event creation failed:", data.error);
           // Handle any errors or display appropriate messages
@@ -44,6 +39,11 @@ function EventForm() {
         console.log("Error:", error);
         // Handle any errors that occurred during the request
       });
+      setPlace("");
+          setCountry("");
+          setDescription("");
+          setCategory("");
+          setName("");
   }
 
   return (
